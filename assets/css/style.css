@@ -1,0 +1,17 @@
+
+html {
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	background-color: #444;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bolder;
+}
+
+.navbar-header {
+	float:none;
+	margin:0 auto;
+	display: block;
+	text-align: center;
+}
