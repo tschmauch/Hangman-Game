@@ -37,6 +37,8 @@ var movieArray = ['Frankenstein',
 'Interstellar'
 ]
 
+var poster = ['./../images/alien.jpg','./../images/arrival.jpg','./../images/baby_driver.jpg','./../images/big_sick.jpg','./../images/casablanca.jpg','./../images/citizen_kane.jpg','./../images/dark_knight.jpg','./../images/dunkirk.jpg','./../images/e_t_the_extra_terrestrial.jpg','./../images/finding_nemo.jpg','./../images/frankenstein.jpg','./../images/godfather.jpg','./../images/hell_or_high_water.jpg','./../images/inside_out.jpg','./../images/interstellar.jpg','./../images/jungle_book.jpg','./../images/king_kong.jpg','./../images/la_confidential.jpg','./../images/lady_bird.jpg','./../images/lawrence_of_arabia.jpg','./../images/logan.jpg','./../images/mad_max_fury_road.jpg','./../images/manchester_by_the_sea.jpg','./../images/pinocchio.jpg','./../images/post.jpg','./../images/psycho.jpg','./../images/snow_white_and_the_seven_dwarfs.jpg','./../images/spotlight.jpg','./../images/star_wars_episode_vii__the_force_awakens.jpg','./../images/taxi_driver.jpg','./../images/toy_story_three.jpg','./../images/toy_story_two.jpg','./../images/Up.jpg','./../images/war_for_the_planet_of_the_apes.jpg','./../images/wizard_of_oz.jpg','./../images/wonder_woman.jpg','./../images/zootopia.jpg'];
+
 
 
 
