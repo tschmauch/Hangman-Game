@@ -12,6 +12,10 @@ body {
 	height: 100%;
 }
 
+p{
+	display: inline;
+}
+
 .navbar-header {
 	float:none;
 	margin:0 auto;
@@ -71,4 +75,12 @@ footer {
 	color: #FEFFF1;
 	text-align: center;
 	padding: 20px 0;
+}
+
+#displayPoster {
+	width: 300px;
+}
+
+#solutionArea {
+	padding-bottom: 20px;
 }
