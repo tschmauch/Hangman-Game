@@ -29,6 +29,8 @@ $(document).ready(function () {
 		var solutionArray = randomMovie.toLowerCase().split("");
 		console.log(solutionArray);
 		var solutionAreaCurrent = [];
+		var uniqueSolutionAreaCurrent = [];
+		var uniqueSolutionArray = [];
 
 		// This for loop puts the _'s in the solution area
 		for (i = 0; i < solutionArray.length; i++) {
@@ -63,10 +65,30 @@ $(document).ready(function () {
 					}
 				}
 				solutionAreaCurrent.push(event.key);
-				console.log(solutionAreaCurrent);
-				if ($.inArray(solutionArray, solutionAreaCurrent) > -1) {
-					console.log('win!');
+				
+				$.each(solutionAreaCurrent, function(i, el){
+					if($.inArray(el, uniqueSolutionAreaCurrent) === -1) uniqueSolutionAreaCurrent.push(el);
+			});
+			$.each(solutionArray, function(j, ej){
+				if($.inArray(ej, uniqueSolutionArray) === -1) uniqueSolutionArray.push(ej);
+		});
+			console.log(uniqueSolutionAreaCurrent.sort().toString());
+			console.log(uniqueSolutionArray.sort().toString());
+
+				// if uniqueSolutionAreaCurrent = uniqueSolutaionArray
+				// 	win!
+				if (uniqueSolutionArray.sort().toString() === uniqueSolutionAreaCurrent.sort().toString()) {
+				winCount++;
+				$('#losses').text('Losses: ' + lossCount);
+				$('#wins').text('Wins: ' + winCount);
+				$('#solutionArea').html(' ');
+				$('#guessMade').html(' ');
+				uniqueSolutionAreaCurrent = [];
+				uniqueSolutionArray = [];
+				hangmanRound();
 				}
+
+
 			}
 			else {
 				for (i = 0; i < validGuess.length; i++) {
