@@ -51,7 +51,8 @@ h3 {
 	background-color: #ddd;
 	height: 100%;
 	font-size: 4rem;
-	border-radius: 33%;
+	border-radius: 5px 17px;
+	box-shadow: 5px 5px 3px black;
 }
 
 .col-md-6 {
@@ -63,6 +64,7 @@ h3 {
 	border-radius: 15px 50px;
 	margin-bottom: 20px;
 	background-color: #444;
+	box-shadow: 10px 10px 5px black;
 }
 
 .col-md-8 {
@@ -74,6 +76,7 @@ h3 {
 	height: 70%;
 	border-radius: 15px 50px;
 	background-color: #444;
+	box-shadow: 10px 10px 5px black;
 }
 
 .game {
@@ -81,6 +84,7 @@ h3 {
 	border-color: black;
 	border-width: 3px;
 	border-radius: 15%;
+	
 }
 
 footer {
@@ -93,6 +97,7 @@ footer {
 #displayPoster {
 	width: 300px;
 	margin-bottom: 20px;
+	box-shadow: 10px 10px 5px black;
 }
 
 #solutionArea {
