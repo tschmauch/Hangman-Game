@@ -11,54 +11,33 @@ $(document).ready(function () {
 	var validGuess = "qwertyuioplkjhgfdsazxcvbnm1234567890";
 	var winCount = 0;
 	var lossCount = 0;
-	var solutionAreaCurrent = [];
-	var uniqueSolutionAreaCurrent = [];
-	var uniqueSolutionArray = [];
-	var solutionArray = [];
-	var randomMovie;
-	var guessesRemaining = 6;
 	$('#wins').html('Wins: ' + winCount);
 	$('#losses').html('Losses: ' + lossCount);
 
-	function getSolutionArray() {
-		solutionArray = randomMovie.toLowerCase().split("");
-		return solutionArray;
-	}
-
-function getUniqueSolutionAreaCurrent() {
-	uniqueSolutionAreaCurrent.length = 0;
-	$.each(solutionAreaCurrent, function (i, el) {
-		if ($.inArray(el, uniqueSolutionAreaCurrent) === -1) uniqueSolutionAreaCurrent.push(el);
-	});
-}
-
-	function getUniqueSolutionArray() {
-		uniqueSolutionArray.length = 0;
-		$.each(solutionArray, function (j, ej) {
-			if ($.inArray(ej, uniqueSolutionArray) === -1) uniqueSolutionArray.push(ej);
-		});
-	}
-
 	// TOP OF HANGMAN FUNCTION //
 	function hangmanRound() {
+		
 		// Load Random Poster from Poster Array and load into posterArea
 		var randomPoster = posterArray[Math.floor(Math.random() * posterArray.length)];
 		$('#displayPoster').attr("src", randomPoster);
+
 		// resets value of guesses allowed
-		guessesRemaining = 6;
+		var guessesRemaining = 6;
 		$('#guessLeft').text(guessesRemaining);
+
 		// Select random Movie from Movie array, create new array with each individual character as own var, set as solution, create underscores equal to number of letters in solutionArea
-		randomMovie = movieArray[Math.floor(Math.random() * movieArray.length)];
-		getSolutionArray();
-		playSpace();
-		getUniqueSolutionArray();
+		var randomMovie = movieArray[Math.floor(Math.random() * movieArray.length)];
 		console.log(randomMovie);
+		var solutionArray = randomMovie.toLowerCase().split("");
 		console.log(solutionArray);
+		var solutionAreaCurrent = [];
+		var uniqueSolutionAreaCurrent = [];
+		var uniqueSolutionArray = [];
 		console.log(solutionAreaCurrent);
-	}
-	// This for loop puts the _'s in the solution area
-	function playSpace() {
-		solutionAreaCurrent.length = 0;
+		console.log(uniqueSolutionAreaCurrent);
+		console.log(uniqueSolutionArray);
+
+		// This for loop puts the _'s in the solution area
 		for (i = 0; i < solutionArray.length; i++) {
 			var blank = $("<p class='solveArea'>");
 			$(blank).attr('data-solution', solutionArray[i]);
@@ -67,7 +46,6 @@ function getUniqueSolutionAreaCurrent() {
 				$(blank).text(solutionArray[i]);
 				solutionAreaCurrent.push(solutionArray[i]);
 			}
-
 			else if (solutionArray[i] === " ") {
 				$(blank).html('&#160');
 				solutionAreaCurrent.push(solutionArray[i]);
@@ -77,62 +55,70 @@ function getUniqueSolutionAreaCurrent() {
 			};
 			$('#solutionArea').append(blank);
 		};
+
+		// Detect key presses, if key is part of solution swap underscore for character, if key is not part of solution write key to guesses made
+		// If Guesses Remaining gets to 0, tally a loss, and start over with new movie
+		// If solution is found, tally a win, and start over with new movie
+		$(document).keyup(function (event) {
+
+			var currentGuess = event.key;
+			console.log(currentGuess);
+			console.log(solutionArray);
+			if ($.inArray(currentGuess, solutionArray) > -1) {
+				for (i = 0; i < solutionArray.length; i++) {
+					if (currentGuess === solutionArray[i]) {
+						$('.' + currentGuess).text(solutionArray[i]);
+					}
+				}
+				solutionAreaCurrent.push(currentGuess);
+
+				$.each(solutionAreaCurrent, function (i, el) {
+					if ($.inArray(el, uniqueSolutionAreaCurrent) === -1) uniqueSolutionAreaCurrent.push(el);
+				});
+				$.each(solutionArray, function (j, ej) {
+					if ($.inArray(ej, uniqueSolutionArray) === -1) uniqueSolutionArray.push(ej);
+				});
+				console.log(uniqueSolutionAreaCurrent.sort().toString());
+				console.log(uniqueSolutionArray.sort().toString());
+
+				// if uniqueSolutionAreaCurrent = uniqueSolutaionArray
+				// 	win!
+				if (uniqueSolutionArray.sort().toString() === uniqueSolutionAreaCurrent.sort().toString()) {
+					winCount++;
+					$('#losses').text('Losses: ' + lossCount);
+					$('#wins').text('Wins: ' + winCount);
+					$('#solutionArea').html(' ');
+					$('#guessMade').html(' ');
+					delete solutionArray;
+					delete uniqueSolutionArray;
+					delete uniqueSolutionAreaCurrent;
+					delete solutionAreaCurrent;
+					hangmanRound();
+				}
+
+
+			}
+			else {
+				for (i = 0; i < validGuess.length; i++) {
+					if (currentGuess === validGuess[i]) {
+						guessesRemaining--;
+						$('#guessLeft').text(guessesRemaining);
+						$('#guessMade').append(currentGuess + ',  ');
+					}
+				}
+				if (guessesRemaining === 0) {
+					lossCount++;
+					$('#losses').text('Losses: ' + lossCount);
+					$('#wins').text('Wins: ' + winCount);
+					console.log('Wins: ' + winCount);
+					console.log('Losses: ' + lossCount);
+					// resets blanks
+					$('#solutionArea').html(' ');
+					$('#guessMade').html(' ');
+					hangmanRound();
+				}
+			}
+		})
 	}
-
-	// Detect key presses, if key is part of solution swap underscore for character, if key is not part of solution write key to guesses made
-	// If Guesses Remaining gets to 0, tally a loss, and start over with new movie
-	// If solution is found, tally a win, and start over with new movie
-
-	$(document).keyup(function (event) {
-
-		var currentGuess = event.key;
-		console.log(currentGuess);
-		console.log(solutionArray);
-		if ($.inArray(currentGuess, solutionArray) > -1) {
-			for (i = 0; i < solutionArray.length; i++) {
-				if (currentGuess === solutionArray[i]) {
-					$('.' + currentGuess).text(solutionArray[i]);
-				}
-			}
-			solutionAreaCurrent.push(currentGuess);
-			console.log(solutionAreaCurrent);
-			getUniqueSolutionAreaCurrent();
-			//////////////////////////////////////////////////////////////
-			console.log(uniqueSolutionAreaCurrent.sort().toString());
-			console.log(uniqueSolutionArray.sort().toString());
-
-			// if uniqueSolutionAreaCurrent = uniqueSolutaionArray
-			// 	win!
-			if (uniqueSolutionArray.sort().toString() === uniqueSolutionAreaCurrent.sort().toString()) {
-				winCount++;
-				$('#losses').text('Losses: ' + lossCount);
-				$('#wins').text('Wins: ' + winCount);
-				$('#solutionArea').html(' ');
-				$('#guessMade').html(' ');
-				hangmanRound();
-			}
-		}
-
-		else {
-			for (i = 0; i < validGuess.length; i++) {
-				if (currentGuess === validGuess[i]) {
-					guessesRemaining--;
-					$('#guessLeft').text(guessesRemaining);
-					$('#guessMade').append(currentGuess + ',  ');
-				}
-			}
-			if (guessesRemaining === 0) {
-				lossCount++;
-				$('#losses').text('Losses: ' + lossCount);
-				$('#wins').text('Wins: ' + winCount);
-				console.log('Wins: ' + winCount);
-				console.log('Losses: ' + lossCount);
-				// resets blanks
-				$('#solutionArea').html(' ');
-				$('#guessMade').html(' ');
-				hangmanRound();
-			}
-		}
-	})
 	hangmanRound();
-})
+});

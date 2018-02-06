@@ -5,15 +5,20 @@ html {
 }
 
 body {
-	background-color: #444;
+	background-image: url("./../images/psychedelic_pattern.png");
 	font-family: 'Open Sans', sans-serif;
 	font-weight: bolder;
-	color: rgb(235, 208, 158);
+	color: #ddd;
 	height: 100%;
 }
 
 p{
 	display: inline;
+	padding:2px;
+}
+
+h3 {
+	padding: 10px;
 }
 
 .navbar-header {
@@ -23,11 +28,14 @@ p{
 	text-align: center;
 	color: #444;
 	height: 100%;
+	background-color: #444;
 }
 
 .navbar {
 	height: 8%;
 	clear: both;
+	background-color: #444;
+	width: 100%;
 }
 
 .container-fluid {
@@ -39,8 +47,8 @@ p{
 	margin:0 auto;
 	display: block;
 	text-align: center;
-	color: #444;
-	background-color: rgb(235, 208, 158);
+	color: #111;
+	background-color: #ddd;
 	height: 100%;
 	font-size: 4rem;
 	border-radius: 33%;
@@ -52,7 +60,9 @@ p{
 	display: block;
 	text-align: center;
 	border: 3px solid black;
+	border-radius: 15px 50px;
 	margin-bottom: 20px;
+	background-color: #444;
 }
 
 .col-md-8 {
@@ -62,12 +72,15 @@ p{
 	text-align: center;
 	border: 3px solid black;	
 	height: 70%;
+	border-radius: 15px 50px;
+	background-color: #444;
 }
 
 .game {
 	height: auto;
 	border-color: black;
 	border-width: 3px;
+	border-radius: 15%;
 }
 
 footer {
