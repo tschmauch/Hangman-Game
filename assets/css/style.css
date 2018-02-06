@@ -79,8 +79,13 @@ footer {
 
 #displayPoster {
 	width: 300px;
+	margin-bottom: 20px;
 }
 
 #solutionArea {
+	padding-bottom: 20px;
+}
+
+#losses {
 	padding-bottom: 20px;
 }
