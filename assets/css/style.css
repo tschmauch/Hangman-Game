@@ -102,8 +102,13 @@ footer {
 
 #solutionArea {
 	padding-bottom: 20px;
+	text-transform: uppercase;
 }
 
 #losses {
 	padding-bottom: 20px;
+}
+
+#guessMade {
+	text-transform: uppercase;
 }

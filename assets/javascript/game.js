@@ -107,6 +107,7 @@ function getUniqueSolutionAreaCurrent() {
 				winCount++;
 				$('#losses').text('Losses: ' + lossCount);
 				$('#wins').text('Wins: ' + winCount);
+				alert('You win!');
 				$('#solutionArea').html(' ');
 				$('#guessMade').html(' ');
 				hangmanRound();
@@ -127,7 +128,7 @@ function getUniqueSolutionAreaCurrent() {
 				$('#wins').text('Wins: ' + winCount);
 				console.log('Wins: ' + winCount);
 				console.log('Losses: ' + lossCount);
-				// resets blanks
+				alert('You lose');
 				$('#solutionArea').html(' ');
 				$('#guessMade').html(' ');
 				hangmanRound();
