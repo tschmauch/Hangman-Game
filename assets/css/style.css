@@ -17,6 +17,10 @@ p{
 	padding:2px;
 }
 
+p[data-solution=" "] {
+	padding: 7px;
+}
+
 h3 {
 	padding: 10px;
 }
