@@ -128,7 +128,7 @@ function getUniqueSolutionAreaCurrent() {
 				$('#wins').text('Wins: ' + winCount);
 				console.log('Wins: ' + winCount);
 				console.log('Losses: ' + lossCount);
-				alert('You lose');
+				alert('You lose.  Correct answer was: ' + randomMovie);
 				$('#solutionArea').html(' ');
 				$('#guessMade').html(' ');
 				hangmanRound();
